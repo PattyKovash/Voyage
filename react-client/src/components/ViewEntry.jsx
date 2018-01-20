@@ -7,9 +7,10 @@ const ViewEntry = (props) => {
       <h4><a href={ props.event.url }>{ props.event.name }</a></h4>
       <img src={ props.event.image_url.replace('/o.jpg', '/m.jpg')} alt="" />
       <AddEvent
-        event={ props.event }
+        param={ props.event }
         isSignedIn={ props.info.isSignedIn }
-        addEventToUser={ props.addEventToUser }
+        action={ props.action }
+        value={ props.value }
       />
     </div>
   );

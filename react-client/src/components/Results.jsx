@@ -12,7 +12,10 @@ const Results = (props) => {
         <View
           info={ props.info }
           category={ props.info.categories.restaurants }
-          addEventToUser={ props.addEventToUser } />
+          action={ props.action }
+          value={'LIKE'}
+        />
+
       </div>
       <hr/>
       <div>
@@ -20,7 +23,8 @@ const Results = (props) => {
         <View
           info={ props.info }
           category={ props.info.categories.hotels }
-          addEventToUser={ props.addEventToUser } />
+          action={ props.deleteEventFromUser }
+          value={'Delete'} />
       </div>
       <hr/>
       <div>
@@ -28,7 +32,8 @@ const Results = (props) => {
         <View
           info={ props.info }
           category={ props.info.categories.events }
-          addEventToUser={ props.addEventToUser } />
+          addEventToUser={ props.addEventToUser }
+          deleteEventFromUser={ props.deleteEventFromUser }/>
       </div>
     </div>
   );

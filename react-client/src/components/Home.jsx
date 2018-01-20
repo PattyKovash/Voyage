@@ -22,7 +22,8 @@ class Home extends React.Component {
           <hr/>
           <Results
             info={ this.props.info }
-            addEventToUser={ this.props.addEventToUser } />
+            addEventToUser={ this.addEventToUser }
+            deleteEventFromUser={ this.deleteEventFromUser } />
           <hr/>
         </div>;
     }

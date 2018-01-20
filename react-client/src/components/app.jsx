@@ -24,6 +24,7 @@ class App extends React.Component {
     this.go = this.go.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
     this.addEventToUser = this.addEventToUser.bind(this);
+    this.deleteEventFromUser = this.deleteEventFromUser.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,7 @@ class App extends React.Component {
   }
 
   deleteEventFromUser(eventId) {
+    console.log('delete event', eventId);
     axios.delete('/users/' + this.state.userId + '/events/' + eventId)
       .then(response => {
         console.log('Deleted from user ', response);
@@ -90,6 +92,7 @@ class App extends React.Component {
   }
 
   addEventToUser(event) {
+    console.log('add event:', event);
     axios.post('/users/' + this.state.userId + '/events', {
       event: event
     })
@@ -135,6 +138,7 @@ class App extends React.Component {
             info={ this.state }
             go={ this.go }
             addEventToUser={ this.addEventToUser }
+            deleteEventFromUser={ this.deleteEventFromUser }
           />
           <RouteProps
             path='/user/:id'

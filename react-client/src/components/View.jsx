@@ -9,7 +9,9 @@ const View = (props) => {
           key={ event.id }
           event={ event }
           info={ props.info }
-          addEventToUser={ props.addEventToUser }
+          action={ props.action }
+          value={ props.value }
+          param={ props.param }
         />
       )}
     </div>
