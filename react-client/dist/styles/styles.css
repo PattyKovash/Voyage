@@ -116,7 +116,7 @@ h2 {
   font-size: 14px;
 }
 
-.ui.six.column.doubling.stackable.masonry.grid {
+.ui.column.doubling.stackable.masonry.grid {
   margin: auto;
   max-width: 85%;
 }
