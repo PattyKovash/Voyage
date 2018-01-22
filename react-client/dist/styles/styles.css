@@ -69,9 +69,6 @@
   max-width: 75%;
 }
 
-.ui.footer.basic.segment p {
-  margin-top: 40px;
-}
 
 .content {
   text-align: center;
@@ -102,8 +99,9 @@ h2 {
 }
 
 .column {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
+
 .ui.middle.aligned.segment {
   min-height: 400px;
 }

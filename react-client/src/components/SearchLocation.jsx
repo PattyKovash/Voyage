@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
 
 class SearchLocation extends React.Component {
   constructor(props) {
@@ -7,9 +8,14 @@ class SearchLocation extends React.Component {
     this.state = {
       location: ''
     };
+
+    this.input = null;
+    this.autocomplete = null;
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleReturnKey = this.handleReturnKey.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+
   }
 
   handleInputChange(e) {
@@ -20,12 +26,31 @@ class SearchLocation extends React.Component {
   }
 
   handleReturnKey(e) {
-    if (e.key === 'Enter' && this.state.location) {
-      this.props.go(this.state.location);
-    }
+    console.log('input', $('input').val());
+    console.log(this.state.location);
+    let location = $('input').val();
+    let key = e.key;
+    console.log('locaiton handle: ', location);
+    console.log('key: ', key);
+
+    this.setState({
+      location: location
+    }, () => {
+      if (key === 'Enter' && this.state.location) {
+        this.props.go(this.state.location);
+      }
+    });
+  }
+
+  handleBlur(e) {
+    this.autocomplete.getPlace();
+    let location = $('input').val();
+    console.log('LOCATION: ', this.autocomplete.gm_accessors_.place.Jc.j);
+
   }
 
   handleClick(e) {
+    console.log(this.state.location);
     e.preventDefault();
     if (this.state.location) {
       this.props.go(this.state.location);
@@ -52,11 +77,12 @@ class SearchLocation extends React.Component {
   }
 
   componentDidMount() {
-    var input = document.getElementById('location-input');
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    this.input = document.getElementById('location-input');
+    this.autocomplete = new google.maps.places.Autocomplete(this.input);
   }
 
   render() {
+    console.log('autocomplete: ', this.autocomplete);
     return (
       <div className="ui container">
         <div className="headerDiv">
@@ -66,8 +92,9 @@ class SearchLocation extends React.Component {
             <br />
             <div className="ui fluid input">
               <input id="location-input" type="text" value={this.state.value} placeholder="I want to go to..."
-                onChange={this.handleInputChange}
-                onKeyPress={this.handleReturnKey}
+                onChange={ this.handleInputChange }
+                onKeyPress={ this.handleReturnKey }
+                onBlur={ this.handleBlur }
               />
               <div className="ui teal button" onClick={ this.handleClick }>GO</div>
             </div>
